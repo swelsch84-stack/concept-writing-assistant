@@ -13,17 +13,6 @@ import type {
 // Loads curated internal knowledge from disk. Everything the model is grounded on
 // lives in /data and /docs so non-engineers can edit it without touching code.
 
-const root = process.cwd();
-
-function readJSON<T>(rel: string): T {
-  const raw = fs.readFileSync(path.join(root, rel), "utf-8");
-  return JSON.parse(raw) as T;
-}
-
-function readText(rel: string): string {
-  return fs.readFileSync(path.join(root, rel), "utf-8");
-}
-
 // Cache across requests in a single server process (cheap, files are small).
 let cache: {
   searchFields: SearchFieldDef[];
