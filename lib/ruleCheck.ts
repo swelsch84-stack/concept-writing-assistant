@@ -57,7 +57,10 @@ function shareWords(a: string, b: string): number {
   const sb = contentWords(b);
   if (sa.size === 0 || sb.size === 0) return 0;
   let shared = 0;
-  for (const w of sa) if (sb.has(w)) shared++;
+for (const w of Array.from(sa)) {
+  if (sb.has(w)) shared++;
+}
+
   return shared;
 }
 
