@@ -1,6 +1,8 @@
 import "server-only";
-import fs from "fs";
-import path from "path";
+import goldenConcepts from "@/data/golden_concepts.json";
+import searchFields from "@/data/search_fields.json";
+import tonalities from "@/data/tonality_examples.json";
+import scoringRubric from "@/data/scoring_rubric.json"
 import type {
   GoldenConcept,
   ScoringRubric,
@@ -33,13 +35,14 @@ let cache: {
 
 export function getKnowledge() {
   if (cache) return cache;
-  cache = {
-    searchFields: readJSON<SearchFieldDef[]>("data/search_fields.json"),
-    tonalities: readJSON<TonalityDef[]>("data/tonality_examples.json"),
-    goldenConcepts: readJSON<GoldenConcept[]>("data/golden_concepts.json"),
-    rubric: readJSON<ScoringRubric>("data/scoring_rubric.json"),
-    rules: readText("docs/concept_writing_rules.md"),
-  };
+cache = {
+  searchFields,
+  tonalities,
+  goldenConcepts,
+  rubric: scoringRubric,
+  rules: "",
+};
+
   return cache;
 }
 
