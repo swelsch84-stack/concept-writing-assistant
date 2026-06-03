@@ -22,7 +22,9 @@ function tokenize(s: string): Set<string> {
 
 function overlap(a: Set<string>, b: Set<string>): number {
   let n = 0;
-  for (const w of a) if (b.has(w)) n++;
+for (const w of Array.from(a)) {
+  if (b.has(w)) n++;
+}
   return n;
 }
 
